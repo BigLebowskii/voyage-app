@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Story Image Generator</title>
+    <<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Story Image Generator</h1>
+      <form id="story-form">
+        <textarea id="story-text" placeholder="Enter your story here.."></textarea>
+        <button type="submit"> Generate Images</button>
+      </form>
+      <div id="results">
+
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
