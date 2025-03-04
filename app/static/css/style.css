@@ -70,4 +70,45 @@ button {
   }
 }
 
+.form-group{
+  margin-bottom: 15px;
+}
 
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  
+}
+
+select{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  
+}
+
+.scene-controls{
+  display: flex;
+  justify-content: space-between;
+  aligh-items: center;
+  margin-top: 5px;
+}
+
+.regenerate-btn{
+  background-color: #4a69hd;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.regenrate-btn:hover{
+  background-color:#3cs5aa6;
+
+
+}
