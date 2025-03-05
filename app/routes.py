@@ -18,24 +18,47 @@ def generate():
     scenes = split_into_scenes(story_text)
     results = []
     
-for scene in scenes:
-    image_path = generate_image_from_text(scene, style)
+    for scene in scenes:
+        image_path = generate_image_from_text(scene, style)
+
+        if image_path:
+            image_url = url_for('static', filename=image_path)
+            results.append({
+                'text': scene,
+                'image_url': image_url,
+            })
+
+    if results:
+        return jsonify({
+            'success': True,
+            'results': results
+        })
+        
+    else:
+        return jsonify({
+            'success': False,
+            'message': 'Failed to generate image'
+        }), 500 
+
+@app.route('/regenerate', methods=['POST'])
+def regenerate():
+    scene_text = request.form.get('scene_text')
+    style = request.form.get('style', 'digital art')
+
+    if not scene_text:
+        return jsonify({'error': 'No scene text provided'}), 400
+
+    image_path = generate_image_from_text(scene_text, style)
 
     if image_path:
         image_url = url_for('static', filename=image_path)
-        results.append({
-            'text': scene,
-            'image_url': image_url,
+        return jsonify({
+            'success': True,
+            'text' : scene_text,
+            'image_url': image_url
         })
-
-if results:
-    return jsonify({
-        'success': True,
-        'results': results
-    })
-    
-else:
-    return jsonify({
-        'success': False,
-        'message': 'Failed to generate image'
-    }), 500 
+    else:
+        return jsonify({
+            'success': False,
+            'message': 'Failed to regenerate image'
+        }), 500
